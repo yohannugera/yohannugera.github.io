@@ -462,6 +462,108 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2025-08-27 00:00:00+00:00">August 27, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="setting_up_conpot_on_fedora"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html">Setting Up ConPot on Fedora</a></h2>
+<h3 id="why"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html#why">Why?</a></h3>
+<p>I need to simulate a simple network with Kali-linux in one side and a VM that emulates an OT environment in other side.
+In middle, I'll have FortiGate that connect these two networks (PCs). On the OT side, I don't have any OT gear, so need
+something to emulate --&gt; Conpot.</p>
+<p>FortiGate has ATP license-set. My plan is to enable device-detection, OT IPS/AppCtrl signatures to detect traffic and
+prevent intrusions. Let's see how it goes</p>
+<h3 id="installing_conpot_--_working_with_fedora"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html#installing_conpot_--_working_with_fedora">Installing Conpot --&gt; Working with Fedora</a></h3>
+<p>I never worked with Fedora before so I thought of using it to simulate Conpot.
+VM spin-up without DNS so I used the following method to fix it.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo nano /etc/systemd/resolved.conf
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>[Resolve]
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>DNS=8.8.8.8 8.8.4.4
+</span></code></pre></div>
+<p>Then I restart "systemd-resolved" --&gt; <code>sudo systemctl restart systemd-resolved</code></p>
+<ul>
+<li>Once internet got fixed, did a 'sudo dnf upgrade' to upgrade all the stuff I got there.</li>
+</ul>
+<h3 id="trying_to_install_conpot_python-package"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html#trying_to_install_conpot_python-package">Trying to install ConPot Python-Package</a></h3>
+<p>Now I'll install Conpot <code>pip install conpot</code>...
+Ahh! crc16 failing. Looks like for conpot, I need an older Python version --&gt; v3.5 or before.</p>
+<h3 id="trying_to_install_an_older_version_of_python_-_v3510"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html#trying_to_install_an_older_version_of_python_-_v3510">Trying to install an older version of Python - v3.5.10</a></h3>
+<ul>
+<li>Getting the gzipped file of Python v3.5.10 --&gt; <code>wget https://www.python.org/ftp/python/3.5.10/Python-3.5.10.tgz</code></li>
+<li>Unzip it --&gt; <code>tar -xf Python-3.5.10.tgz</code></li>
+<li>Go inside that folder --&gt; <code>cd Python-3.5.10</code></li>
+<li>Run installation</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./configure --enable-optimizations --prefix=/opt/python3.5
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>make -j$(nproc)
+</span></code></pre></div>
+<ul>
+<li>Verify installation --&gt; <code>/opt/python3.5/bin/python3.5 --version</code></li>
+<li>OK. I have Python v3.5.10. Need a virtual-environment --&gt; <code>/opt/python3.5/bin/python3.5 -m venv venv</code></li>
+<li>Now I'm trying again <code>pip install conpot</code> --&gt; so many errors that points to pip and setuptools version. Installing
+versions that can support Python v3.5.10.</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip install pip==20.3.4
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pip install setuptools==50.0.0
+</span></code></pre></div>
+<ul>
+<li>Failing again. Giving me "Segmentation Failure" which breaks even a simple "pip list". Don't have an option other
+than trying again. In doing so, I found an awesome feature in Linux history. you can recall a command that you enter
+before by specifying the line-number prefixed with "!". Simply like !100. History gets deleted at restart.</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>!108 --means--&gt; deactivate
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>!109 --means--&gt; rm -rf venv
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>!111 --means--&gt; /opt/python3.5/bin/python3.5 -m venv venv
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>!112 --means--&gt; source venv/bin/activate
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>!165 --means--&gt; pip install pip==20.3.4
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>!163 --means--&gt; pip install setuptools==50.0.0
+</span></code></pre></div>
+<ul>
+<li>ahhhh.... getting too many errors now. First time I got an error with "pycrypto" and then with "scapy".
+Errors are throwing me off. Thinking of using a Docker.</li>
+</ul>
+<h3 id="trying_to_install_conpot_docker_image"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html#trying_to_install_conpot_docker_image">Trying to install ConPot Docker image</a></h3>
+<ul>
+<li>Followed <a href="https://docs.docker.com/engine/install/fedora/">this article</a> to install "Docker"</li>
+<li>Then I followed these steps to run Conpot. See <a href="https://conpot.readthedocs.io/en/latest/installation/
+quick_install.html">this article</a>.</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker pull honeynet/conpot
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Run docker run -it -p 80:80 -p 102:102 -p 502:502 -p 161:161/udp --network=bridge honeynet/conpot:latest /bin/sh
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>conpot -f --template default
+</span></code></pre></div>
+<p>After this, when I navigate to "http://localhost". I got this!!!</p>
+<p><img alt="conpot_running.png" src="../images/conpot_running.png" /></p>
+<h3 id="testing_with_kali"><a class="toclink" href="../2025/08/27/setting-up-conpot-on-fedora.html#testing_with_kali">Testing with Kali</a></h3>
+<p>Kali and this Fedora machine both connects to FortiGate and there, it's super-open. I have any-any policy. So, I tried
+Fedora machines IP and boom, I can access the page too..</p>
+<p><img alt="access_conpot_from_kali.png" src="../images/access_conpot_from_kali.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Now I need a test plan.. That'll be a separate post!</p>
+</div>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2025-07-22 00:00:00+00:00">July 22, 2025</time></li>
         
         
