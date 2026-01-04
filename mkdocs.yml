@@ -1,0 +1,91 @@
+site_name: Yohan Nugera
+site_description: Everything that I find interesting and worth recording!
+site_author: Yohan Nugera
+use_directory_urls: false
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  font: Roboto
+  code: Roboto Mono
+
+  feature:
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - header.autohide
+    - navigation.expand
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.indexes
+    - navigation.sections
+    - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+
+extra_css:
+  - extra.css
+  - code_select.css
+
+nav:
+  - Home: index.md
+  - Blog:
+    - blog/index.md
+
+plugins:
+  - search
+  - autorefs
+  - glightbox:
+      slide_effect: none
+      touchNavigation: false
+      draggable: false
+      shadow: false
+  - blog:
+      archive_name: Archive
+      archive_url_format: "archive/{date}"
+      archive_toc: true
+
+markdown_extensions:
+  - toc:
+      title: On this page
+      permalink: "#"
+      baselevel: 1
+      separator: "_"
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.caret
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - pymdownx.details
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.blocks.tab:
+      alternate_style: true
+  - markdown_grid_tables

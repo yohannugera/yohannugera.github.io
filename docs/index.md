@@ -1,0 +1,26 @@
+# Hi There!
+
+Well... I'm Yohan. I like solving problems, mainly for network-security related ones. I really love doing it.
+I have a strong background in Networking and Network Security context in general, so I solve (or I try to) problems
+related to those areas. Just like anybody else, I don't know everything. So, I live and I learn.
+
+Back in my University days, I have studied Electronics and Telecommunication engineering at the University of Moratuwa.
+I always had a curiosity to know and learn how machines talk and how we use machines to talk, so I focused more on
+Telecommunication side of my degree. Even for the final-year project I did a simulation of Vehicular communication (V2X)
+by using OMNet++ and SUMO. I have always wished that I would do post-graduate studies in that area but here I am, learn,
+design, and troubleshoot computer networks. It doesn't matter, I like doing this job too.
+
+So, after my university career, I started my first job at a Systems-Integration Company in Sri Lanka (Millennium IT
+ESP). Starting from the ground, I have learned Network Switching, Routing, and Security areas there. Good thing about
+working for a SI company in Sri Lanka is that I get to work with customer from start to finish. Meaning, starting from
+initial discussions, PoC (Proof of Concept), information gathering, to delivering the project, and finally do hand-over
+and a KT (Knowledge Transfer), I got to do everything. It may sound pretty-bad, but I really loved doing it. What I see
+the best part of doing that job is because I get to know the problem and work for a solution, which I think is what
+engineering is all about. 
+
+Anyway, time has passed and here I am now, working for Fortinet, undoubtedly the best cybersecurity company out there,
+in Malaysia, living with my wife and daughter. I think I have acquired more knowledge over the years, doing work, so
+now it's time to write some back. Maybe someone out there will read this someday, or maybe I read it someday and see
+my own progress, and see how blessed I am.
+
+In this site, I'll try to add all my lessons, failures, tests, and ideas. It's gonna be fun :)
