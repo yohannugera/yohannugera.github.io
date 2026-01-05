@@ -1,6 +1,6 @@
 ---
-date:
-    created: 2025-07-22
+draft: false
+date: 2025-07-22
 ---
 
 # This is my first blog post
