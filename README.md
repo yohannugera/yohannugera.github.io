@@ -1,2 +1,3 @@
-# yohannugera.github.io_mkdocs
-yohannugera.github.io mkdocs development
+# yohannugera.github.io
+
+Developed by using MKDocs
