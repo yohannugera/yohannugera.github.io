@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-01-04
+date: 2026-01-04
 ---
 
 # First Blog for 2026
@@ -46,3 +46,25 @@ jobs:
 Let's see if it works! I'm going to push this article now and see if it'll generate the site for me as soon as I 
 commit-and-push it to GitHub.
 
+I can see that my workflow is generating two GitHub Actions (workflows).
+
+![img.png](images/first_blog_for_2026_1.png)
+
+I acknowledge "Publish Site" one, because I created it but "pages-build-deployment" is something spawn up automatically.
+
+!!! note "Fixing the Error"
+    ![img.png](images/first_blog_for_2026_3.png)
+
+    I used "Explain Error" AI option in Github :)
+    It appears that the date-time format I used in my files are not rendering properly to html.
+
+## What is "pages-build-deployment" workflow?
+
+I guess the way GitHub highlight them when kinda explains it.
+
+![img.png](images/first_blog_for_2026_2.png)
+
+It says "push" on "Publish Site ..." workflow and "dynamic" on "pages build on deployment" workflow. So, it appears that
+"actions/upload-pages-artifact@v4" and "actions/deploy-pages@v4" is doing this magic.
+
+Cool!!! from now on, I only need to write pages as usual and I don't have to do publishing part manually.
