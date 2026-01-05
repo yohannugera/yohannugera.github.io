@@ -67,4 +67,4 @@ I guess the way GitHub highlight them when kinda explains it.
 It says "push" on "Publish Site ..." workflow and "dynamic" on "pages build on deployment" workflow. So, it appears that
 "actions/upload-pages-artifact@v4" and "actions/deploy-pages@v4" is doing this magic.
 
-Cool!!! from now on, I only need to write pages as usual and I don't have to do publishing part manually.
+Cool!!! from now on, I only need to write pages as usual and I don't have to maintain it conciously.
