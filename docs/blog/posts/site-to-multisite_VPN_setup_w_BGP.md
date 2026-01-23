@@ -7,6 +7,8 @@ categories:
 slug: Site-to-MultiSite VPN Setup with BGP
 ---
 
+# Site-to-MultiSite VPN Setup with BGP
+
 ## Requirement
 
 My customer wanted to configure two VPNs with a 3rd party, one with their primary site and another with their DR. They
@@ -65,7 +67,7 @@ config vpn ipsec phase1-interface
         set dhgrp 14
         set transport auto
         set remote-gw 10.113.4.188
-        set psksecret ENC TQPcWY1vtrq6hP+9FLK8rGdWcaIdyVv1WCcI3hgjxty3jrvcstHZ9LZOHGcS5UhaTPYtwXbC/X/F7djUBFUyGGPyEmCpVSmL+SBHurrIAqiuLRvKTf5srtlSd8yZLC1EWyaUbVnQlU/kp6bQ0GfxaG1+4mUybDCAfXNw1FPBkOSeLiscu3RsWPOmVHzzebHrpSPGDVlmMjY3dkVA
+        set psksecret <<removed>>
     next
     edit "3rd-party_DR"
         set interface "port2"
@@ -76,7 +78,7 @@ config vpn ipsec phase1-interface
         set dhgrp 14
         set transport auto
         set remote-gw 10.115.4.38
-        set psksecret ENC uOZmdKo/GXSuB6Hyo+BKjps10M/SyZADArOLiGa48YvuU1WOjqEuCTrpZw4iqQtL165s7+AI0dprry/AtSCHkmCHtxjnj4C0jqu7iwt2JyDt46gItmnJt4WtBVCr9uUXBc8b/g2AFOE9NODZABRNaLjHhGlra3Hr1MekbwZ8c9AdIk59cMEsoaY0tyNHRamupkmKnllmMjY3dkVA
+        set psksecret <<removed>>
     next
 end
 
@@ -186,7 +188,7 @@ config vpn ipsec phase1-interface
         set dhgrp 14
         set transport auto
         set remote-gw 10.111.4.215
-        set psksecret ENC 9XD3+0NBaciLsVVJYXRnyK1xkvjTd2G0rbsPUcWPQXiGSEJ7KepUMvy9/YyKWP6R0sUp5vbbFgnMOsyAVRJFQMg491YGjkusHI39v78uEbmMcrSSbgWlookBCBmUyG5hpKo+hC97NGvqWZaGtUY7vX/LDSVUlF1TS+6OMZSJnJhGGd8JZVI/Q+ZXrNbP58yWYaRTvFlmMjY3dkVA
+        set psksecret <<removed>>
     next
 end
 

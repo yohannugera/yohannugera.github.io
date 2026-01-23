@@ -46,7 +46,10 @@ extra_css:
 nav:
   - Home: index.md
   - Blog:
-    - blog/index.md
+      - blog/index.md
+  - Forti-stuff:
+      - IPSec VPN:
+          - Site-to-MultiSite VPN Setup with BGP: blog/posts/site-to-multisite_VPN_setup_w_BGP.md
 
 plugins:
   - search
