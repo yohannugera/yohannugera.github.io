@@ -1,7 +1,6 @@
 ---
 draft: true
-date:
-    created: 2025-12-31
+date: 2025-12-31
 categories:
   - Python
 slug: Installing Python Install Manager
